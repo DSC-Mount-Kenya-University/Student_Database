@@ -3,7 +3,7 @@ import os
 from tools import Lists, Strings, Files
 # Written by Elvis
 
-
+// student class defination
 class Student(object):
     def __init__(self, name, age, level, cos):
         self.name = name
@@ -12,6 +12,7 @@ class Student(object):
         self.cos = cos
     def __str__(self):
         return self.name
+    // must be run for the student to be saved in the actual database
     def save(self):
         update_line = self.name + "," + str(self.age) + "," + str(self.level) + "," + self.cos + "\n"
         file2 = open("studentDB", "r+")
@@ -28,7 +29,7 @@ class Student(object):
             file2.write(update_line)
         except:
             return "ERROR"
-
+// returns the student description when given a student object
     def describe(self):
         try:
             hold = "Name :" + self.name + "\n" + "Course :" + self.cos + "\nLevel :" + str(self.level)
@@ -50,7 +51,9 @@ class Student(object):
                     hold = hold + "\nAge :" + str(age)
                     return hold
 
-
+/* this minor functions return real attributes when given a student object
+they can be useful when you have imported this script and need quick access of the underlying
+information*/
     def get_level(self):
         level = self.level
         return level
@@ -69,13 +72,13 @@ class Student(object):
             return "true"
         except:
             return "false"
-
+// Database queries on student objects 
     class Queries:
         def pint_studentdb():
             file = open("studentDB","r+")
             content = file.read()
             return content
-
+// can quickly search for a student and return details
         def student_search(name):
             file = open("studentDB","r+")
             contents = file.read()
@@ -89,7 +92,7 @@ class Student(object):
                     if name in item:
                         return item
             return "Student Not Found"
-
+// for sure student object, this script returns an organised dictionary of student data
         def getstudent_data(name):
             file = open("studentDB", "r+")
             contents = file.readlines()
